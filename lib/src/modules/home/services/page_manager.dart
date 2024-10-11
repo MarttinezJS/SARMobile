@@ -5,15 +5,15 @@ import 'package:sigue_adelante_radio/src/modules/home/services/service_locator.d
 class PageManager {
   final playButtonNotifier = PlayButtonNotifier();
   final _audioHandler = getIt<AudioHandler>();
-  
+
   void init() async {
     _listenToPlaybackState();
     final mediaItem = MediaItem(
-      id: '1',
-      title: 'Radio online',
-      artist: 'Sigue Adelante Radio',
-      artUri: Uri.file('assets/imgs/Logo-Sigue-Adelante-Header-1-1-scaled.jpg')
-    );
+        id: '1',
+        title: 'Radio online',
+        artist: 'Sigue Adelante Radio',
+        artUri:
+            Uri.file('assets/imgs/Logo-Sigue-Adelante-Header-1-1-scaled.jpg'));
     _audioHandler.addQueueItems([mediaItem]);
   }
 
@@ -42,9 +42,7 @@ class PageManager {
   void dispose() {
     _audioHandler.customAction('dispose');
   }
-
 }
-
 
 class PlayButtonNotifier extends ValueNotifier<ButtonState> {
   PlayButtonNotifier() : super(_initialValue);

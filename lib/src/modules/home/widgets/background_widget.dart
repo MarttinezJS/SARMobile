@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Background extends StatelessWidget {
-
   final Color primaryColor;
   final Color backgroundColor;
 
-  const Background({ 
-    Key? key,
-    required this.primaryColor,
-    required this.backgroundColor
-  }) : super(key: key);
+  const Background(
+      {super.key, required this.primaryColor, required this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +23,13 @@ class Background extends StatelessWidget {
   }
 }
 
-
 class _HeaderPainter extends CustomPainter {
-
   Color color;
 
-  _HeaderPainter(
-    this.color
-  );
+  _HeaderPainter(this.color);
 
   @override
   void paint(Canvas canvas, Size size) {
-
     final paint = Paint();
 
     paint.color = color;
@@ -49,8 +40,10 @@ class _HeaderPainter extends CustomPainter {
 
     path.lineTo(size.width, 0);
     path.lineTo(size.width, size.height * 0.1);
-    path.cubicTo(size.width * 0.7, size.height * 0.14, size.width * 0.7, size.height * 0.3, size.width * 0.5, size.height * 0.3);
-    path.cubicTo(size.width * 0.3, size.height * 0.3, size.width * 0.3, size.height * 0.14, size.width * 0, size.height * 0.1);
+    path.cubicTo(size.width * 0.7, size.height * 0.14, size.width * 0.7,
+        size.height * 0.3, size.width * 0.5, size.height * 0.3);
+    path.cubicTo(size.width * 0.3, size.height * 0.3, size.width * 0.3,
+        size.height * 0.14, size.width * 0, size.height * 0.1);
 
     canvas.drawPath(path, paint);
   }
@@ -63,16 +56,12 @@ class _HeaderPainter extends CustomPainter {
 }
 
 class _FooterPainter extends CustomPainter {
-
   Color color;
 
-  _FooterPainter(
-    this.color
-  );
+  _FooterPainter(this.color);
 
   @override
   void paint(Canvas canvas, Size size) {
-
     final paint = Paint();
 
     paint.color = color;
@@ -82,8 +71,10 @@ class _FooterPainter extends CustomPainter {
     final path = Path();
     path.moveTo(size.height, size.width);
     path.lineTo(size.width, size.height * 0.9);
-    path.cubicTo(size.width * 0.7, size.height * 0.86, size.width * 0.7, size.height * 0.7, size.width * 0.5, size.height * 0.7);
-    path.cubicTo(size.width * 0.3, size.height * 0.7, size.width * 0.3, size.height * 0.86, 0, size.height * 0.9);
+    path.cubicTo(size.width * 0.7, size.height * 0.86, size.width * 0.7,
+        size.height * 0.7, size.width * 0.5, size.height * 0.7);
+    path.cubicTo(size.width * 0.3, size.height * 0.7, size.width * 0.3,
+        size.height * 0.86, 0, size.height * 0.9);
     path.lineTo(0, size.height);
     path.lineTo(size.width, size.height);
     canvas.drawPath(path, paint);

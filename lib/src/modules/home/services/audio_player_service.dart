@@ -3,15 +3,14 @@ import 'package:just_audio/just_audio.dart';
 
 Future<AudioHandler> initAudioService() async {
   return await AudioService.init(
-    builder: () => AudioPlayerService(),
-    config: const AudioServiceConfig(
-      androidNotificationChannelId: 'com.sigue_adelante_radio.stream',
-      androidNotificationChannelName: 'Radio online',
-      androidNotificationOngoing: true,
-      androidStopForegroundOnPause: true,
-      preloadArtwork: true,
-    )
-  );
+      builder: () => AudioPlayerService(),
+      config: const AudioServiceConfig(
+        androidNotificationChannelId: 'com.sigue_adelante_radio.stream',
+        androidNotificationChannelName: 'Radio online',
+        androidNotificationOngoing: true,
+        androidStopForegroundOnPause: true,
+        preloadArtwork: true,
+      ));
 }
 
 class AudioPlayerService extends BaseAudioHandler {
@@ -19,13 +18,13 @@ class AudioPlayerService extends BaseAudioHandler {
 
   Stream<PlayerState> get playerStateStream => _player.playerStateStream;
 
-  AudioPlayerService(){
+  AudioPlayerService() {
     _loadStream();
     _notifyAudioHandlerAboutPlaybackEvents();
   }
 
-  _loadStream() async => await _player.setUrl('https://server2.ejeserver.com:8826/stream');
-  
+  _loadStream() async =>
+      await _player.setUrl('https://server2.ejeserver.com:8826/stream');
 
   void _notifyAudioHandlerAboutPlaybackEvents() {
     _player.playbackEventStream.listen((PlaybackEvent event) {
@@ -82,7 +81,7 @@ class AudioPlayerService extends BaseAudioHandler {
 
   @override
   Future<void> seek(Duration position) => _player.seek(position);
-  
+
   @override
   Future<void> customAction(String name, [Map<String, dynamic>? extras]) async {
     if (name == 'dispose') {

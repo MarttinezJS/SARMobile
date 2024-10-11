@@ -6,7 +6,7 @@ import 'package:sigue_adelante_radio/src/shared/helpers/modal_helper.dart';
 
 void main() async {
   await setupServiceLocator();
-  runApp( const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -17,7 +17,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
@@ -29,8 +28,9 @@ class _MyAppState extends State<MyApp> {
     getIt<PageManager>().dispose();
     super.dispose();
   }
+
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: ModalHelper.navigatorKey,
       title: 'Sigue adelante radio',
@@ -38,11 +38,10 @@ class _MyAppState extends State<MyApp> {
       initialRoute: 'home',
       routes: routes,
       theme: ThemeData(
-        colorScheme: const ColorScheme.light(
-          primary:  Color.fromRGBO(255, 190, 36, 1),
-          background: Color.fromRGBO(255, 236, 179, 1),
-        )
-      ),
+          colorScheme: const ColorScheme.light(
+        primary: Color.fromRGBO(255, 190, 36, 1),
+        surface: Color.fromRGBO(255, 236, 179, 1),
+      )),
     );
   }
 }
