@@ -1,15 +1,11 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:sigue_adelante_radio/src/core/config/theme_data.dart';
-import 'package:sigue_adelante_radio/src/modules/home/models/points.dart';
-import 'package:sigue_adelante_radio/src/modules/home/services/mount_points_service.dart';
 import 'package:sigue_adelante_radio/src/modules/home/services/page_manager.dart';
 import 'package:sigue_adelante_radio/src/modules/home/services/service_locator.dart';
 import 'package:sigue_adelante_radio/src/modules/home/widgets/play_button.dart';
-import 'package:sigue_adelante_radio/src/modules/home/widgets/points_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
