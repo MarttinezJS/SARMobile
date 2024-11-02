@@ -10,7 +10,6 @@ class PageManager {
   void init() async {
     _listenToPlaybackState();
     final artUri = (Uri.parse('https://sigueadelanteradio.com/logo.svg'));
-    print(artUri);
     final mediaItem = MediaItem(
       id: '1',
       title: 'Radio online',
@@ -42,7 +41,10 @@ class PageManager {
     });
   }
 
-  void play() => _audioHandler.play();
+  void play() {
+    playButtonNotifier.value = ButtonState.loading;
+    _audioHandler.play();
+  }
   void pause() => _audioHandler.pause();
   void stop() => _audioHandler.stop();
 

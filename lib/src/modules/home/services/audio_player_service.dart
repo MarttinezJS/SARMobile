@@ -1,9 +1,14 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:sigue_adelante_radio/src/modules/home/services/mount_points_service.dart';
 
 Future<AudioHandler> initAudioService() async {
+
+  final points = await MountPointsService.getPoints();
   return await AudioService.init(
-      builder: () => AudioPlayerService(),
+      builder: () => AudioPlayerService(
+        url: points.first.url
+      ),
       config: const AudioServiceConfig(
         androidNotificationChannelId: 'com.sigue_adelante_radio.stream',
         androidNotificationChannelName: 'Radio online',
@@ -14,17 +19,17 @@ Future<AudioHandler> initAudioService() async {
 }
 
 class AudioPlayerService extends BaseAudioHandler {
-  final _player = AudioPlayer();
+  static final _player = AudioPlayer();
 
   Stream<PlayerState> get playerStateStream => _player.playerStateStream;
 
-  AudioPlayerService() {
-    _loadStream();
+  AudioPlayerService({required String url}) {
+      loadStream(url);
     _notifyAudioHandlerAboutPlaybackEvents();
   }
 
-  _loadStream() async =>
-      await _player.setUrl('https://server2.ejeserver.com:8826/stream');
+  static loadStream(String url) async =>
+      await _player.setUrl(url);
 
   void _notifyAudioHandlerAboutPlaybackEvents() {
     _player.playbackEventStream.listen((PlaybackEvent event) {

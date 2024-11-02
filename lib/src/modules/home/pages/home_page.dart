@@ -1,11 +1,15 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:sigue_adelante_radio/src/core/config/theme_data.dart';
+import 'package:sigue_adelante_radio/src/modules/home/models/points.dart';
+import 'package:sigue_adelante_radio/src/modules/home/services/mount_points_service.dart';
 import 'package:sigue_adelante_radio/src/modules/home/services/page_manager.dart';
 import 'package:sigue_adelante_radio/src/modules/home/services/service_locator.dart';
 import 'package:sigue_adelante_radio/src/modules/home/widgets/play_button.dart';
+import 'package:sigue_adelante_radio/src/modules/home/widgets/points_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,6 +20,7 @@ class HomePage extends StatelessWidget {
     final primaryColor = Theme.of(context).primaryColor;
     final secondaryColor = Theme.of(context).colorScheme.secondary;
     final pageManager = getIt<PageManager>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Sigue Adelante Radio'),
@@ -26,11 +31,14 @@ class HomePage extends StatelessWidget {
       bottomSheet: Stack(
         children: [
           Container(
-            color: primaryColor.withOpacity(0.3),
+            decoration: BoxDecoration(
+              color: primaryColor.withOpacity(0.3),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+            ),
             child: Row(
               children: [
                  Transform.translate(
-                  offset: Offset(0, size.height * - 0.04),
+                  offset: Offset(0, size.height * - 0.05),
                   child: PlayButton()
                 ),
                 ClipRRect(
@@ -47,7 +55,7 @@ class HomePage extends StatelessWidget {
                           valueListenable: pageManager.progressData,
                           builder: (_, value, __) {
                             return SizedBox(
-                              width: 300,
+                              width: size.width*0.74,
                               child: ProgressBar(
                                 progress: value["currentTime"] ?? Duration.zero, 
                                 total: value["buffer"] ?? Duration.zero,
@@ -59,7 +67,8 @@ class HomePage extends StatelessWidget {
                               )
                             );
                           }
-                        )
+                        ),
+                        // PointsWidget()
                       ],
                     )
                   ),
@@ -71,55 +80,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-  // @override
-  // Widget build(BuildContext context) {
-  //   final primaryColor = Theme.of(context).colorScheme.primary;
-  //   final backgroundColor = Theme.of(context).colorScheme.surface;
-  //   final size = MediaQuery.of(context).size;
-  //   final fontSize = sqrt(pow(size.width, 2) + pow(size.height, 2)) * 0.02;
-
-  //   return Scaffold(
-  //       body: Stack(
-  //     alignment: Alignment.center,
-  //     children: [
-  //       Background(
-  //           primaryColor: primaryColor, backgroundColor: backgroundColor),
-  //       Positioned(
-  //         top: size.height * 0.05,
-  //         child: Text(
-  //           'Sigue Adelante Radio',
-  //           style: TextStyle(
-  //               fontWeight: FontWeight.bold,
-  //               fontSize:
-  //                   sqrt(pow(size.width, 2) + pow(size.height, 2)) * 0.038,
-  //               color: backgroundColor),
-  //         ),
-  //       ),
-  //       Container(
-  //         width: size.width * 0.4,
-  //         height: size.height * 0.2,
-  //         decoration: BoxDecoration(
-  //             color: primaryColor,
-  //             image: DecorationImage(
-  //               image: const AssetImage(
-  //                   'assets/imgs/Logo-Sigue-Adelante-Header-1-1-scaled.jpg'),
-  //               scale: sqrt(pow(size.width, 2) + pow(size.height, 2)) * 0.03,
-  //             ),
-  //             borderRadius: BorderRadius.circular(100)),
-  //       ),
-  //       Positioned(
-  //         left: size.width * 0.3,
-  //         bottom: size.height * 0.1,
-  //         height: size.height * 0.2,
-  //         width: size.width * 0.4,
-  //         child: PlayButton(
-  //             primaryColor: primaryColor,
-  //             size: size,
-  //             backgroundColor: backgroundColor),
-  //       ),
-  //       Positioned(
-  //           bottom: size.height * 0.01, child: InfoWidget(fontSize: fontSize))
-  //     ],
-  //   ));
-  // }
 }

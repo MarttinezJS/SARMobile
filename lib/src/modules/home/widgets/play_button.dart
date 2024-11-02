@@ -12,42 +12,41 @@ class PlayButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final pageManager = getIt<PageManager>();
     return ValueListenableBuilder(
-        valueListenable: pageManager.playButtonNotifier,
-        builder: (_, value, __) {
-          final Widget buttonChild;
-          final void Function()? method;
-
-          switch (value) {
-            case ButtonState.loading:
-              buttonChild = const CircularProgressIndicator();
-              method = null;
-              break;
-            case ButtonState.paused:
-              method = pageManager.play;
-              buttonChild = Icon(
-                Icons.play_arrow,
-              );
-
-              break;
-            case ButtonState.playing:
-              method = pageManager.pause;
-              buttonChild = Icon(
-                Icons.pause,
-              );
-              break;
-            default:
-              buttonChild = const SizedBox();
-              method = null;
-              break;
-          }
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 3),
-            child: IconButton(
-              onPressed: method,
-              icon: buttonChild,
-              iconSize: 60,
-            ),
-          );
-        });
+      valueListenable: pageManager.playButtonNotifier,
+      builder: (_, value, __) {
+        final Widget buttonChild;
+        final void Function()? method;
+        switch (value) {
+          case ButtonState.loading:
+            buttonChild = const CircularProgressIndicator();
+            method = null;
+            break;
+          case ButtonState.paused:
+            method = pageManager.play;
+            buttonChild = Icon(
+              Icons.play_arrow,
+            );
+            break;
+          case ButtonState.playing:
+            method = pageManager.pause;
+            buttonChild = Icon(
+              Icons.pause,
+            );
+            break;
+          default:
+            buttonChild = const SizedBox();
+            method = null;
+            break;
+        }
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 3),
+          child: IconButton(
+            onPressed: method,
+            icon: buttonChild,
+            iconSize: 60,
+          ),
+        );
+      }
+    );
   }
 }

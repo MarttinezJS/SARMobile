@@ -15,7 +15,9 @@ android {
     namespace = 'com.sigueadelanteradio.app'
     compileSdk = 34
     ndkVersion = flutter.ndkVersion
-
+    aaptOptions {
+        cruncherEnabled = false
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -48,7 +50,7 @@ android {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
+            signingConfig = signingConfigs.release
         }
     }
 }
