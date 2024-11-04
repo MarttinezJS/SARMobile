@@ -6,6 +6,7 @@ import 'package:sigue_adelante_radio/src/core/config/theme_data.dart';
 import 'package:sigue_adelante_radio/src/modules/home/services/page_manager.dart';
 import 'package:sigue_adelante_radio/src/modules/home/services/service_locator.dart';
 import 'package:sigue_adelante_radio/src/modules/home/widgets/play_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -21,8 +22,20 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Sigue Adelante Radio'),
       ),
-      body: Center(
-        child: Image.asset('assets/imgs/logo_sin_fondo.png'),
+      body: Column(
+        children: [
+          MaterialButton(
+            onPressed: () => launchUrl(Uri.parse('https://sigueadelanteradio.com/policy')),
+            child: Text('Política de datos', style: TextStyle(
+              color: Colors.blue, decoration: TextDecoration.underline
+            ),),
+          ),
+          Expanded(
+            child: Center(
+              child: Image.asset('assets/imgs/logo_sin_fondo.png'),
+            ),
+          ),
+        ],
       ),
       bottomSheet: Stack(
         children: [
