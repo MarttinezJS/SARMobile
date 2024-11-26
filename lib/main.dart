@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:sigue_adelante_radio/src/core/config/routes.dart';
+import 'package:sigue_adelante_radio/src/core/config/theme_data.dart';
 import 'package:sigue_adelante_radio/src/modules/home/services/page_manager.dart';
 import 'package:sigue_adelante_radio/src/modules/home/services/service_locator.dart';
 import 'package:sigue_adelante_radio/src/shared/helpers/modal_helper.dart';
 
 void main() async {
+  await dotenv.load(fileName: '.env');
   await setupServiceLocator();
   runApp(const MyApp());
 }
@@ -37,11 +40,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: 'home',
       routes: routes,
-      theme: ThemeData(
-          colorScheme: const ColorScheme.light(
-        primary: Color.fromRGBO(255, 190, 36, 1),
-        surface: Color.fromRGBO(255, 236, 179, 1),
-      )),
+      theme: themeData
     );
   }
 }
