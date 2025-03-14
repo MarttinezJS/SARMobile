@@ -1,6 +1,6 @@
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:sigue_adelante_radio/src/core/config/page_manager.dart';
+import 'package:sigue_adelante_radio/src/shared/home/services/page_manager.dart';
 import 'package:sigue_adelante_radio/src/core/config/service_locator.dart';
 
 class CustomProgressBar extends StatelessWidget {
@@ -22,6 +22,7 @@ class CustomProgressBar extends StatelessWidget {
           child: ProgressBar(
             progress: value["currentTime"] ?? Duration.zero, 
             total: value["buffer"] ?? Duration.zero,
+            onSeek: pageManager.seek,
             progressBarColor: secondaryColor,
             thumbColor: secondaryColor,
             baseBarColor: yellowBackground,

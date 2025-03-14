@@ -27,7 +27,6 @@ class PageManager {
     _audioHandler.playbackState.listen((playbackState) {
       final isPlaying = playbackState.playing;
       final processingState = playbackState.processingState;
-      print('+++++++++++++++++++++++$processingState+++++++++++++++++++++++');
       progressData.value = {
         'currentTime': playbackState.position,
         'buffer': playbackState.bufferedPosition
@@ -51,6 +50,7 @@ class PageManager {
   }
   void pause() => _audioHandler.pause();
   void stop() => _audioHandler.stop();
+  void seek(Duration moment) => _audioHandler.seek(moment);
 
   void dispose() {
     _audioHandler.customAction('dispose');

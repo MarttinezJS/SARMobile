@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:sigue_adelante_radio/src/core/theme/theme.dart';
-import 'package:sigue_adelante_radio/src/modules/home/widgets/custom_progress_bar.dart';
-import 'package:sigue_adelante_radio/src/modules/home/widgets/play_button.dart';
+import 'package:sigue_adelante_radio/src/shared/home/widgets/custom_progress_bar.dart';
+import 'package:sigue_adelante_radio/src/shared/home/widgets/play_button.dart';
 
 class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet({super.key});

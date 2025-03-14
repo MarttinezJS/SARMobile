@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sigue_adelante_radio/src/modules/home/widgets/custom_bottom_sheet.dart';
+import 'package:sigue_adelante_radio/src/shared/home/widgets/custom_bottom_sheet.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {

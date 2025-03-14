@@ -1,10 +1,9 @@
-import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:sigue_adelante_radio/src/core/config/page_manager.dart';
+import 'package:sigue_adelante_radio/src/shared/home/services/page_manager.dart';
 import 'package:sigue_adelante_radio/src/core/config/service_locator.dart';
 import 'package:sigue_adelante_radio/src/core/theme/theme.dart';
-import 'package:sigue_adelante_radio/src/modules/home/pages/home.dart';
+import 'package:sigue_adelante_radio/src/shared/home/pages/home.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');

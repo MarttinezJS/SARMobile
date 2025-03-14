@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sigue_adelante_radio/src/core/config/page_manager.dart';
+import 'package:sigue_adelante_radio/src/shared/home/services/page_manager.dart';
 import 'package:sigue_adelante_radio/src/core/config/service_locator.dart';
 
 
