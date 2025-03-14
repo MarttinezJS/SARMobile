@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sigue_adelante_radio/src/core/config/page_manager.dart';
+import 'package:sigue_adelante_radio/src/core/config/service_locator.dart';
 
-import 'package:sigue_adelante_radio/src/modules/home/services/page_manager.dart';
-import 'package:sigue_adelante_radio/src/modules/home/services/service_locator.dart';
 
 class PlayButton extends StatelessWidget {
   const PlayButton({
@@ -32,10 +32,6 @@ class PlayButton extends StatelessWidget {
             buttonChild = Icon(
               Icons.pause,
             );
-            break;
-          default:
-            buttonChild = const SizedBox();
-            method = null;
             break;
         }
         return Padding(

@@ -5,12 +5,12 @@
 *.swp
 .DS_Store
 .atom/
+.build/
 .buildlog/
 .history
 .svn/
+.swiftpm/
 migrate_working_dir/
-keystore.properties
-.env
 
 # IntelliJ related
 *.iml
@@ -29,11 +29,9 @@ keystore.properties
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
-.packages
 .pub-cache/
 .pub/
 /build/
-pubspect.lock
 
 # Symbolication related
 app.*.symbols
