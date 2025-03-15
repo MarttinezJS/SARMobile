@@ -5,7 +5,7 @@ import 'package:sigue_adelante_radio/src/core/config/service_locator.dart';
 
 class CustomProgressBar extends StatelessWidget {
 
-  final Color   secondaryColor;
+  final Color secondaryColor;
   final Color yellowBackground;
   final double width;
 

@@ -18,7 +18,6 @@ class PageManager {
       title: 'Radio online',
       artist: 'Sigue Adelante Radio',
       artUri: artUri,
-      isLive: true
     );
     _audioHandler.addQueueItems([mediaItem]);
   }

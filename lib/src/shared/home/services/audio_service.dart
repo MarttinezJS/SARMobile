@@ -1,20 +1,22 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:sigue_adelante_radio/src/core/config/http_client.dart';
-import 'package:sigue_adelante_radio/src/shared/models/mount_point.dart';
+// import 'package:sigue_adelante_radio/src/core/config/http_client.dart';
+// import 'package:sigue_adelante_radio/src/shared/models/mount_point.dart';
 
 
 Future<AudioHandler> initAudioService() async {
 
-  final points = await _getMountPoints();
+  // final points = await _getMountPoints();
   return await AudioService.init(
       builder: () => AudioPlayerService(
-        url: points.first.url
+        url: 'https://points.sigueadelanteradio.com/standard'
       ),
       config: AudioServiceConfig(
         androidNotificationChannelId: 'com.sigue_adelante_radio.stream',
         androidNotificationChannelName: 'Radio online',
-        androidStopForegroundOnPause: false
+        androidNotificationOngoing: true,
+        preloadArtwork: true,
+        
       ));
 }
 
@@ -79,12 +81,12 @@ class AudioPlayerService extends BaseAudioHandler with SeekHandler {
 }
 
 
-Future<List<MountPoint>> _getMountPoints() async {
-  try {
-    final resp = await HttpClient.client.get('stream/points');
-    final data = PointResponse.fromJson(resp.data);
-    return data.body ?? [];
-    } catch (e) {
-      return [];
-    }
-}
+// Future<List<MountPoint>> _getMountPoints() async {
+//   try {
+//     final resp = await HttpClient.api.get('stream/points');
+//     final data = PointResponse.fromJson(resp.data);
+//     return data.body ?? [];
+//     } catch (e) {
+//       return [];
+//     }
+// }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "465733191158",
+    "project_id": "sigue-adelante-radio",
+    "storage_bucket": "sigue-adelante-radio.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465733191158:android:562f8b3be4cb463f30f3d7",
+        "android_client_info": {
+          "package_name": "com.sigueadelanteradio.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDra7labajnrArlpL8pV3nJ6TNZurk_Xd4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
