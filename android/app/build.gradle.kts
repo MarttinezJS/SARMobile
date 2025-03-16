@@ -9,16 +9,20 @@ plugins {
 dependencies {
   implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
   implementation("com.google.firebase:firebase-analytics")
+  implementation("androidx.window:window:1.0.0-rc01")
+  implementation("androidx.window:window-java:1.0.0-rc01")
+  coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.2")
 }
 
 android {
     namespace = "com.sigueadelanteradio.app"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -34,6 +38,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -43,6 +48,7 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+    
 }
 
 flutter {

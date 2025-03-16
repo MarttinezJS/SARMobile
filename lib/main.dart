@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:sigue_adelante_radio/src/core/config/local_notification_service.dart';
 import 'package:sigue_adelante_radio/src/core/config/push_notifications_service.dart';
 import 'package:sigue_adelante_radio/src/core/config/ws_client.dart';
 import 'package:sigue_adelante_radio/src/shared/home/services/page_manager.dart';
@@ -12,6 +13,7 @@ void main() async {
   await setupServiceLocator();
   await WsClient.initWs();
   await PushNotificationsService.initApp();
+  await LocalNotificationService.init();
   runApp(const MyApp());
 }
 
@@ -27,9 +29,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    PushNotificationsService.messagesStream.listen((notification) {
-      print(notification);
-    },);
+    PushNotificationsService.messagesStream.listen(LocalNotificationService.parseNotification);
     getIt<PageManager>().init();
   }
   @override

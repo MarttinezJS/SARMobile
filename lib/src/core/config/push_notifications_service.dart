@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:sigue_adelante_radio/firebase_options.dart';
+import 'package:sigue_adelante_radio/src/core/config/local_notification_service.dart';
 import 'package:sigue_adelante_radio/src/shared/models/push_notification.dart';
 
 class PushNotificationsService {
@@ -34,35 +35,22 @@ class PushNotificationsService {
     });
     try {
       token = await _firebaseMessaging.getToken() ?? '';
-      print(token);
-      FirebaseMessaging.onBackgroundMessage(_backgroundHandler);
-      FirebaseMessaging.onMessage.listen(_onMessageHandler);
-      FirebaseMessaging.onMessageOpenedApp.listen(_openMessageHandler);
+      // print(token);
+      FirebaseMessaging.onBackgroundMessage(backgroundHandler);
     } catch (e) {
       // Firebase no inicializó
     }
   }
 
-  static Future _onMessageHandler(RemoteMessage message) async {
-    _messageController.add(_mapPush(message));
-  }
-
-  static Future _openMessageHandler(RemoteMessage message) async {
-    _messageController.add(_mapPush(message));
-  }
-
-  static Future _backgroundHandler(RemoteMessage message) async {
-    _messageController.add(_mapPush(message));
-  }
-
-  static _mapPush(RemoteMessage message) {
-    return PushNotification(
-      title: message.notification!.title ?? '',
-      body: message.notification!.body ?? ''
-    );
-  }
-
   static closeStream() {
     _messageController.close();
   }
+}
+
+@pragma('vm:entry-point')
+Future backgroundHandler(RemoteMessage message) async {
+  LocalNotificationService.parseNotification(PushNotification(
+    title: message.notification!.title ?? '',
+    body: message.notification!.body ?? ''
+  ));
 }
