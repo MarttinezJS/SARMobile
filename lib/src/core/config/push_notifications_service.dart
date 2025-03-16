@@ -3,8 +3,11 @@ import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sigue_adelante_radio/firebase_options.dart';
+import 'package:sigue_adelante_radio/src/core/config/http_client.dart';
 import 'package:sigue_adelante_radio/src/core/config/local_notification_service.dart';
+import 'package:sigue_adelante_radio/src/shared/models/fm_token_resp.dart';
 import 'package:sigue_adelante_radio/src/shared/models/push_notification.dart';
 
 class PushNotificationsService {
@@ -24,6 +27,7 @@ class PushNotificationsService {
       criticalAlert: false,
       provisional: false,
       sound: true,
+      providesAppNotificationSettings: true
     );
 
     if (settings.authorizationStatus == AuthorizationStatus.denied) {
@@ -35,10 +39,26 @@ class PushNotificationsService {
     });
     try {
       token = await _firebaseMessaging.getToken() ?? '';
-      // print(token);
+      _registerToken(token);
+      print(token);
       FirebaseMessaging.onBackgroundMessage(backgroundHandler);
     } catch (e) {
       // Firebase no inicializó
+    }
+  }
+  static _registerToken(String token) async  {
+    final preferences = await SharedPreferences.getInstance();
+    final deviceId = preferences.getString('deviceId');
+    final resp =  await HttpClient.api.post('app/fm-token',
+      data: {
+        "token": token,
+        "deviceId": deviceId,
+      }
+    );
+    final tokenResp = TokenResp.fromJson(resp.data);
+    final body = tokenResp.body;
+    if (body != null) {
+      preferences.setString('deviceId', body.deviceId!);
     }
   }
 

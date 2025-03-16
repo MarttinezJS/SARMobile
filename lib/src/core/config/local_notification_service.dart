@@ -24,7 +24,8 @@ class LocalNotificationService {
   const androidDetails = AndroidNotificationDetails('1', 'notificaciones',
     channelDescription: 'notificaciones de la radio.',
     importance: Importance.max,
-    priority: Priority.high
+    priority: Priority.high,
+    enableVibration: true
   );
   const iosDetails = DarwinNotificationDetails();
   const notificationDetails = NotificationDetails(
@@ -32,6 +33,6 @@ class LocalNotificationService {
     iOS: iosDetails
   );
 
-  await _flutterLocalNotificationsPlugin.show(0, notification.title, notification.body, notificationDetails);
+  await _flutterLocalNotificationsPlugin.show(1, notification.title, notification.body, notificationDetails);
 }
 }

@@ -31,15 +31,21 @@ class SongData extends StatelessWidget {
             return Row(
               children: [
                 Image(
-                  image: NetworkImage(playable!.nowPlaying.song.art),
+                  image: NetworkImage(playable!.live.isLive ? playable!.live.art : playable!.nowPlaying.song.art),
                   height: size.height * 0.05,
                 ),
                 SizedBox(width: 2,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(playable!.nowPlaying.song.title, style: TextStyle(fontWeight: FontWeight.bold, color: secondaryColor),),
-                    Text(playable!.nowPlaying.song.artist, style: TextStyle(color: secondaryColor),),
+                    Text(playable!.live.isLive ? playable!.live.streamerName : playable!.nowPlaying.song.title, style: TextStyle(fontWeight: FontWeight.bold, color: secondaryColor),),
+                    playable!.live.isLive 
+                    ? Chip(
+                      label: Text('En vivo', style: TextStyle(color: Colors.white),),
+                      backgroundColor: Colors.red,
+                      shape: StadiumBorder(),
+                    )
+                    :Text(playable!.nowPlaying.song.artist, style: TextStyle(color: secondaryColor),),
                   ],
                 ),
               ],
