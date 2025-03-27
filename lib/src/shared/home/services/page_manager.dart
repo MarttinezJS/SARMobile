@@ -14,10 +14,11 @@ class PageManager {
     _listenToPlaybackState();
     final artUri = (Uri.parse('https://sigueadelanteradio.com/logo.svg'));
     final mediaItem = MediaItem(
-      id: '1',
+      id: '2',
       title: 'Radio online',
       artist: 'Sigue Adelante Radio',
       artUri: artUri,
+      isLive: true,
     );
     _audioHandler.addQueueItems([mediaItem]);
   }

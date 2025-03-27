@@ -18,7 +18,10 @@ class PlayButton extends StatelessWidget {
         final void Function()? method;
         switch (value) {
           case ButtonState.loading:
-            buttonChild = const CircularProgressIndicator();
+            buttonChild = Padding(
+              padding: const EdgeInsets.all(10),
+              child: const CircularProgressIndicator(),
+            );
             method = null;
             break;
           case ButtonState.paused:
